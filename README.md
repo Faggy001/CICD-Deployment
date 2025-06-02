@@ -1,7 +1,7 @@
 # CICD-Deployment
 Group B project task
 
-✅WEEK 2 MENTORSHIP PROJECT BY GROUP B TEAM
+✅WEEK 3 MENTORSHIP PROJECT BY GROUP B TEAM
 
 ✅GROUP B TEAM: Fagoroye Sanumi O.
                  & Lawal Jonathan
