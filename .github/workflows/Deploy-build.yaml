@@ -58,13 +58,22 @@ jobs:
         run: |
           echo "EC2_PUBLIC_IP=$(aws ec2 describe-instances --filters Name=tag:Name,Values=${{ env.AWS_EC2 }} --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)" >> "$GITHUB_ENV"
           echo "SHA: $GITHUB_SHA"
-         
+      
+      - name: Save EC2 SSH Key
+        run: |
+          echo -e "${{ secrets.EC2_KEY }}" > ~/Flask-key.pem
+          chmod 600 ~/Flask-key.pem
+      - name: Verify saved key
+        run: cat ./Flask-key.pem
+
+     
       - name: Execute Remote SSH Commands using SSH Key
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ env.EC2_PUBLIC_IP }}
           username: ec2-user
           key: ${{ secrets.EC2_KEY }}
+          key_path: ./Flask-key.pem
           port: 22
           script: |
             echo "Cleaning up the VM"
