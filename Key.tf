@@ -10,7 +10,7 @@ resource "aws_key_pair" "tier" {
 
 resource "null_resource" "save_key" {
   provisioner "local-exec" {
-    command = "echo '${tls_private_key.ssh_key.private_key_pem}' > ./tier-key.pem && chmod 600 ./Flask-key.pem"
+    command = "echo '${tls_private_key.ssh_key.private_key_pem}' > ./Flask-key.pem && chmod 600 ./Flask-key.pem"
   }
 
   depends_on = [tls_private_key.ssh_key]
