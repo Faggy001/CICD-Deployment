@@ -19,5 +19,6 @@ variable "ssh_key" {
 }
 
 variable "tfstate_bucket" {
-  type = string
+  description = "S3 bucket for remote state"
+  default     = "groupb-terraform-state005"
 }
