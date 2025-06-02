@@ -1,8 +1,7 @@
 name: Terraform Destroy
 
 on:
-    # Defines the trigger for the workflow
-    # It will enable running the workflow manually from the GitHub Actions UI
+   
     workflow_dispatch:
 
 jobs:
