@@ -13,11 +13,6 @@ variable "subnet_cidr_list" {
   default = ["10.0.1.0/24"]
 }
 
-variable "ssh_key" {
-  type    = string
-  default = "Flask-key"
-}
-
 variable "tfstate_bucket" {
   description = "S3 bucket for remote state"
   default     = "groupb-terraform-state005"

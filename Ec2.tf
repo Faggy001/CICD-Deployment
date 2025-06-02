@@ -4,7 +4,7 @@ resource "aws_instance" "private" {
   subnet_id              = aws_subnet.public.id
   iam_instance_profile   = aws_iam_instance_profile.ec2_profile.name
   vpc_security_group_ids = [aws_security_group.Flask_on_ec2.id, ]
-  key_name               = var.ssh_key
+  key_name               = "Flask-key"
 
   # User data script to configure docker 
   user_data = <<-EOF
