@@ -4,7 +4,7 @@ resource "aws_vpc" "main" {
   enable_dns_hostnames = true
 
   tags = {
-    "Name" = "main-vpc"
+    "Name" = "groupb-vpc"
   }
 }
 
@@ -21,7 +21,7 @@ resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    "Name" = "main-IG"
+    "Name" = "groupb-IG"
   }
 }
 
@@ -30,7 +30,7 @@ resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
   tags = {
-    "Name" = "public-route"
+    "Name" = "groupb-pr"
   }
 }
 
