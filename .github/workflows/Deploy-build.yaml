@@ -61,8 +61,8 @@ jobs:
       
       - name: Save EC2 SSH Key
         run: |
-          echo -e "${{ secrets.EC2_KEY }}" > ~/.ssh/id_rsa
-          chmod 600 ~/.ssh/id_rsa
+          echo -e "${{ secrets.EC2_KEY }}" > ~/Flask-key.pem
+          chmod 600 ~/Flask-key.pem
     
      
       - name: Execute Remote SSH Commands using SSH Key
