@@ -4,8 +4,7 @@ Group B project task
 ✅WEEK 2 MENTORSHIP PROJECT BY GROUP B TEAM
 
 ✅GROUP B TEAM: Fagoroye Sanumi O.
-
-                 Lawal Jonathan
+                 & Lawal Jonathan
                
 ✏️**TOPIC**: Set Up CI/CD Pipeline to Deploy Python Web App on AWS
 
