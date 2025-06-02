@@ -16,7 +16,7 @@ resource "aws_subnet" "public" {
 
 }
 
-# Internet gateway to enable trafic from internet
+
 resource "aws_internet_gateway" "main" {
   vpc_id = aws_vpc.main.id
 
@@ -25,7 +25,7 @@ resource "aws_internet_gateway" "main" {
   }
 }
 
-# Public Route
+
 resource "aws_route_table" "public" {
   vpc_id = aws_vpc.main.id
 
@@ -40,7 +40,6 @@ resource "aws_route_table_association" "public" {
   route_table_id = aws_route_table.public.id
 }
 
-# route to internet gateway for public subnet
 resource "aws_route" "public_internet_access" {
   route_table_id         = aws_route_table.public.id
   destination_cidr_block = "0.0.0.0/0"

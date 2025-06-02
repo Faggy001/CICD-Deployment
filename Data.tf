@@ -1,4 +1,3 @@
-# Fetch the lates AMI (ec2 image) with a given pattern
 data "aws_ami" "amazon_linux" {
   most_recent = true
   filter {
