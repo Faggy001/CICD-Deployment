@@ -63,6 +63,8 @@ jobs:
         run: |
           echo -e "${{ secrets.EC2_KEY }}" > ./Flask-key.pem
           chmod 600 ./Flask-key.pem
+          sudo chown root:root ./Flask-key.pem
+
       - name: Check key file permissions and ownership
         run: ls -l ./Flask-key.pem
 
