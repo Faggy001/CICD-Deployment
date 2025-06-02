@@ -58,31 +58,29 @@ jobs:
         run: |
           echo "EC2_PUBLIC_IP=$(aws ec2 describe-instances --filters Name=tag:Name,Values=${{ env.AWS_EC2 }} --query 'Reservations[*].Instances[*].PublicIpAddress' --output text)" >> "$GITHUB_ENV"
           echo "SHA: $GITHUB_SHA"
-      
-      - name: Save EC2 SSH Key
+    
+      - name: Decode EC2 SSH Key
         run: |
-          echo -e "${{ secrets.EC2_KEY }}" > ./Flask-key.pem
-          chmod 600 ./Flask-key.pem
-          sudo chown root:root ./Flask-key.pem
+          echo "${{ secrets.EC2_KEY }}" | tr -d '\r' | sed 's/\\n/\n/g' > decoded_key.pem
+          chmod 600 decoded_key.pem
+          echo "EC2_SSH_KEY<<EOF" >> $GITHUB_ENV
+          cat decoded_key.pem >> $GITHUB_ENV
+          echo "EOF" >> $GITHUB_ENV
 
-      - name: Check key file permissions and ownership
-        run: ls -l ./Flask-key.pem
-
-     
-      - name: Execute Remote SSH Commands using SSH Key
+      - name: Deploy via SSH
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ env.EC2_PUBLIC_IP }}
           username: ec2-user
-          key_path: ${{ github.workspace }}/Flask-key.pem
+          key: ${{ env.EC2_SSH_KEY }}
           port: 22
           script: |
             echo "Cleaning up the VM"
             docker ps -aq | xargs -r docker rm -f
             docker images -q | xargs -r docker rmi -f
-            
+
             echo "Logging in to ECR"
             aws ecr get-login-password --region ${{ env.AWS_REGION }} | docker login --username AWS --password-stdin ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
-            
+
             echo "Running container"
             docker run -td -p 80:5000 --name flask-app ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com/${{ env.ECR_REPO }}:${{ env.GIT_SHA }}
