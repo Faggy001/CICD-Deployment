@@ -6,25 +6,25 @@ Group B project task
 ✅GROUP B TEAM: Fagoroye Sanumi O.
                  & Lawal Jonathan
                
-✏️**TOPIC**: Set Up CI/CD Pipeline to Deploy Python Web App on AWS
+**TOPIC**: Set Up CI/CD Pipeline to Deploy Python Web App on AWS
 
-**Project CI/CD and Infrastructure Deployment**
+✏️**Project CI/CD and Infrastructure Deployment**
 This repository contains automated workflows to manage both your infrastructure deployment using Terraform and your application deployment using Docker on AWS.
 
-**Terraform Deploy Workflow**
+📌**Terraform Deploy Workflow**
 
 This workflow automates the provisioning and management of AWS infrastructure using Terraform.
 
 Workflow Trigger: Can be triggered manually through the GitHub Actions UI.
 Optionally configurable to trigger on pushes to the main branch, ignoring documentation changes.
 
-**Environment Variables**:
+📌**Environment Variables**:
 
-AWS_REGION: AWS region where resources are deployed (e.g., ca-central-1).
+🔹AWS_REGION: AWS region where resources are deployed (e.g., ca-central-1).
 
-TERRAFORM_VER: Terraform CLI version used (e.g., 1.7.5).
+🔹TERRAFORM_VER: Terraform CLI version used (e.g., 1.7.5).
 
-**Jobs and Steps**:
+📌**Jobs and Steps**:
 
 Checkout the repository to access Terraform code.
 
@@ -44,7 +44,7 @@ Apply the Terraform plan automatically.
 
 Display Terraform outputs after deployment.
 
-**How to Use**:
+📌**How to Use**:
 
 Add your AWS credentials (AWS_ACCESS_KEY_ID and AWS_SECRET_ACCESS_KEY) to your GitHub repository secrets.
 
@@ -52,27 +52,27 @@ Trigger the workflow manually or configure it to run automatically on push event
 
 The Terraform infrastructure will be deployed or updated accordingly.
 
-**Docker Build and Deploy Workflow**
+📌**Docker Build and Deploy Workflow**
 
 This workflow automates building a Docker image from your application code, pushing it to Amazon Elastic Container Registry (ECR), and deploying it to an AWS EC2 instance.
 
-**Workflow Triggers**: Can be triggered manually via GitHub Actions UI.
+📌**Workflow Triggers**: Can be triggered manually via GitHub Actions UI.
 
 Optionally triggered on changes to specific folders or files.
 
-**Environment Variables**:
+📌**Environment Variables**:
 
-AWS_REGION: AWS region used (e.g., ca-central-1).
+🔹AWS_REGION: AWS region used (e.g., ca-central-1).
 
-AWS_EC2: Name tag of the EC2 instance where the container will be deployed.
+🔹AWS_EC2: Name tag of the EC2 instance where the container will be deployed.
 
-ECR_REPO: Name of the Docker repository in Amazon ECR.
+🔹ECR_REPO: Name of the Docker repository in Amazon ECR.
 
-GIT_SHA: Git commit SHA used to tag Docker images uniquely.
+🔹GIT_SHA: Git commit SHA used to tag Docker images uniquely.
 
-**Jobs and Steps**:
+📌**Jobs and Steps**:
 
-**Build Job**:
+📌**Build Job**:
 
 Checkout the repository.
 
@@ -84,7 +84,7 @@ Build the Docker image tagged with the current Git SHA.
 
 Push the Docker image to the ECR repository.
 
-**Deploy Job**:
+📌**Deploy Job**:
 
 Checkout the repository again.
 
@@ -102,7 +102,7 @@ Login to ECR to pull the Docker image.
 
 Run the Docker container exposing it on port 80.
 
-**How to Use**:
+📌**How to Use**:
 
 Store AWS credentials (AWS_ACCESS_KEY_ID, AWS_SECRET_ACCESS_KEY, AWS_ACCOUNT_ID) and the EC2 SSH private key (EC2_KEY) in GitHub Secrets.
 
@@ -110,7 +110,7 @@ Trigger the workflow manually or configure automatic triggers.
 
 Your application will be automatically built, pushed, and deployed to the EC2 instance.
 
-**Summary**: The Dockerized Flask application will be deployed to an AWS EC2 instance using GitHub Actions. This pipeline implements core DevOps principles by enabling CI/CD (Continuous Integration and Continuous Deployment), ensuring automatic builds and deployments upon source changes.
+📘**Summary**: The Dockerized Flask application will be deployed to an AWS EC2 instance using GitHub Actions. This pipeline implements core DevOps principles by enabling CI/CD (Continuous Integration and Continuous Deployment), ensuring automatic builds and deployments upon source changes.
 
 On modification of application code, dependencies, or the Dockerfile, the GitHub Actions workflow is triggered. It builds a new Docker image, pushes it to Amazon Elastic Container Registry (ECR), and redeploys the updated container to the EC2 instance. The application becomes accessible via the EC2 instance’s public IP on port 80.
 
@@ -121,7 +121,8 @@ The Docker workflow automates application container build, registry management, 
 Both workflows rely on securely stored secrets for AWS authentication and EC2 SSH access.
 
 
-**proof of the deployed app running on AWS**
+✅**proof of the deployed app running on AWS**
+
 ![proof](<Images/Screenshot 2025-06-02 135108.png>)
 
 ![proof](<Images/Screenshot 2025-06-02 135045.png>)
