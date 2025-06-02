@@ -61,8 +61,8 @@ jobs:
       
       - name: Save EC2 SSH Key
         run: |
-          echo -e "${{ secrets.EC2_KEY }}" > ~/Flask-key.pem
-          chmod 600 ~/Flask-key.pem
+          echo -e "${{ secrets.EC2_KEY }}" > ./Flask-key.pem
+          chmod 600 ./Flask-key.pem
       - name: Verify saved key
         run: cat ./Flask-key.pem
 
